@@ -119,7 +119,7 @@ error_log("DEBUG: Alive status is: " . var_export($session['user']['alive'], tru
         $session['user']['playerfights'] = getsetting("pvpday", 3);
         invalidatedatacache("list.php-warsonline");
         saveuser();
-        error_log("DEBUG: Resurrection for " . $session['user']['login'] . ": alive=" . $session['user']['alive'] . ", hitpoints=" . $session['user']['hitpoints'])
+        error_log("DEBUG: Resurrection for " . $session['user']['login'] . ": alive=" . $session['user']['alive'] . ", hitpoints=" . $session['user']['hitpoints']);
     }
     $session['user']['age']++;
     $session['user']['seenmaster']=0;
