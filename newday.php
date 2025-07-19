@@ -108,8 +108,10 @@ if ($dp < $dkills) {
     output("`c`b`#It is a New Day!`0`b`c");
     rawoutput("</font>");
     $resurrection = httpget('resurrection');
-error_log("DEBUG: Alive status is: " . var_export($session['user']['alive'], true));
-    if (empty($session['user']['alive']) || $session['user']['alive'] === 0 || $session['user']['alive'] === "0"){
+error_log("DEBUG: Alive status is: " . var_export($session['user']['alive'], true) . " (type: " . gettype($session['user']['alive']) . ")");
+    // Only resurrect if this is a proper resurrection (from graveyard or admin action)
+    // Don't auto-resurrect dead players every new day - they should stay dead until properly resurrected
+    if (($resurrection == "true") && ($session['user']['alive'] === false || $session['user']['alive'] === 0 || $session['user']['alive'] === "0" || !$session['user']['alive'])){
         $session['user']['resurrections']++;
         output("`@You are resurrected!  This is resurrection number %s.`0`n",$session['user']['resurrections']);
         $session['user']['alive'] = 1;
@@ -119,7 +121,7 @@ error_log("DEBUG: Alive status is: " . var_export($session['user']['alive'], tru
         $session['user']['playerfights'] = getsetting("pvpday", 3);
         invalidatedatacache("list.php-warsonline");
         saveuser();
-        error_log("DEBUG: Resurrection for " . $session['user']['login'] . ": alive=" . $session['user']['alive'] . ", hitpoints=" . $session['user']['hitpoints'])
+        error_log("DEBUG: Resurrection for " . $session['user']['login'] . ": alive=" . $session['user']['alive'] . ", hitpoints=" . $session['user']['hitpoints']);
     }
     $session['user']['age']++;
     $session['user']['seenmaster']=0;
