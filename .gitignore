@@ -1,0 +1,40 @@
+# Database connection files (protect your passwords!)
+dbconnect.php
+
+# Configuration files with sensitive data
+config.php
+settings.php
+
+# Log files
+*.log
+logs/
+error_log
+
+# Backup directories and files
+lotgd/
+lotgd (copy)/
+*.bak
+*.backup
+*.sql
+
+# Output directories
+accounts-output/
+
+# Test files
+test.php
+which.php
+logout_force.php
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+
+# Cache and temporary files
+cache/
+tmp/
+temp/
